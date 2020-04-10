@@ -8,7 +8,9 @@ int main(void)
 
 	signal(SIGINT, handle_signal);
 	do {
-		printf("$ ");
+		//printf("$ ");
+		prompt();
+
 		/*read input and return string*/
 		line = read_input();
 		/*separates string to get command and atgs*/

@@ -48,7 +48,7 @@ char **sparse_str(char *line)
 		{
 			bufsize += TOK_BUFSIZE;
 			tokens_backup = tokens;
-			tokens = realloc(tokens, bufsize * sizeof(char *));
+			tokens = _realloc(tokens, bufsize * sizeof(char *));
 			if (!tokens)
 			{
 				free(tokens_backup);
@@ -89,4 +89,22 @@ int execute(char **args)
 		i++;
 	}
 	return (child_process(args));
+}
+
+
+void prompt()
+{
+	char *buffer = getcwd(NULL, 0); /* DIRECTORIO ACTUAL - RECIBE EL INPUT EN PANTALLA */
+	char *token = strtok(buffer, "/");
+
+	while (token != NULL)
+		token = strtok(NULL, "/");
+
+	//if (isatty(STDIN_FILENO)) /* VERIFICA QUE EL STDIN SE ESTA UBICADO EN LA TERMINAL */
+	if (isatty(fileno(stdin)))
+	{
+		printf("$ ");
+	}
+
+	free(buffer); /*LIBERA MEMORIA*/
 }

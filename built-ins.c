@@ -39,5 +39,5 @@ int func_printenv(char **args)
 		printf("%s\n", array[i]);
 	}
 
-	return (0);
+	return (1);
 }

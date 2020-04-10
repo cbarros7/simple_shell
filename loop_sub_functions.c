@@ -117,7 +117,7 @@ char **sparse_env_str(char *line)
 		{
 			bufsize += TOK_BUFSIZE;
 			tokens_backup = tokens;
-			tokens = realloc(tokens, bufsize * sizeof(char *));
+			tokens = _realloc(tokens, bufsize * sizeof(char *)); /*CONTAR LOS DOS :*/
 			if (!tokens)
 			{
 				free(tokens_backup);

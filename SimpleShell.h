@@ -33,6 +33,9 @@ char *_strstr(char *str1, char *str2);
 char *read_input(void);
 char **sparse_str(char *line);
 int execute(char **args);
+void prompt();
+
+void *_realloc(void *ptr, unsigned int new_size);
 
 typedef struct builtins{
 	char *array_commands;
