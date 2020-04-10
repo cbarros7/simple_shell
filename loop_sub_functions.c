@@ -1,6 +1,12 @@
 #include "SimpleShell.h"
 
-char *_getenv(const char *path)
+/**
+ * _getenv - provides the value of the environment passed to it as arguement
+ * @env: the environment to be passed as arguement
+ * Return: an array which contains the value of the environment or)
+ * on failure
+ */
+char *_getenv(const char *env)
 {
 	char **environment;
 	char *tmp, *token;
@@ -13,24 +19,29 @@ char *_getenv(const char *path)
 		token = strtok(tmp, "=");
 		if (token == NULL)
 			return (0);
-		if (_strlen(token) != _strlen(path))
+		if (_strlen(token) != _strlen(env))
 			continue;
-		for (i = 0; i < _strlen(path); i++)
+		for (i = 0; i < _strlen(env); i++)
 		{
-			if (path[i] != tmp[i])
+			if (env[i] != tmp[i])
 			{
 				break;
 			}
-			else if (path[i] == tmp[i])
+			else if (env[i] == tmp[i])
 				return (strtok(NULL, "="));
 		}
 	}
 	return (0);
 }
 
+/**
+ * _which - identifies the path of the command(*args) that is being passed
+ * to it
+ * @args: the command that is being passed to it
+ * Return: the complete path of the command or 0 on failure
+ */
 char *_which(char *args)
 {
-	//char *comp;
 	char *tmp, **path, *sparse;
 	int size, i, size_path;
 
@@ -50,9 +61,6 @@ char *_which(char *args)
 		tmp = _strcat(tmp, "/");
 		tmp = _strcat(tmp, (char *)args);
 
-		//comp = _strstr(tmp, args);
-		//tmp = comp;
-
 		if (_stat(tmp) == 0)
 		{
 			return (tmp);
@@ -61,6 +69,11 @@ char *_which(char *args)
 	return (0);
 }
 
+/**
+ * child_process - executes a command if the path of it is an executable file
+ * @args: the command to be executed
+ * Return: 1
+ */
 int child_process(char **args)
 {
 	pid_t pid;
@@ -96,6 +109,12 @@ int child_process(char **args)
 	return (1);
 }
 
+/**
+ * sparse_env_str - separates the value of the env being passed to it
+ * into strings
+ * @line: array to be sparsed
+ * Return: an array of strings containing the paths
+ */
 char **sparse_env_str(char *line)
 {
 	int bufsize = TOK_BUFSIZE, posicion = 0;
@@ -117,7 +136,8 @@ char **sparse_env_str(char *line)
 		{
 			bufsize += TOK_BUFSIZE;
 			tokens_backup = tokens;
-			tokens = _realloc(tokens, bufsize * sizeof(char *)); /*CONTAR LOS DOS :*/
+			/*CONTAR LOS DOS :*/
+			tokens = _realloc(tokens, bufsize * sizeof(char *));
 			if (!tokens)
 			{
 				free(tokens_backup);

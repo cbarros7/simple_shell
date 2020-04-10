@@ -1,33 +1,21 @@
 #include "SimpleShell.h"
-/*
-   int func_help(char **args)
-   {
-   (void) args;
-   char *array_commands[] = {
-   "help",
-   "exit"
-   };
-   char *array_help[] = {
-   "help - displays this menu",
-   "exit - exits child program and goes back to parent. use-> <exit>"
-   };
-   unsigned int i = 0;
-   printf("Welcome to help menu\nThese are the different commands\n");
-   while (i < (sizeof(array_commands) / sizeof(char **)))
-   {
-   printf(" %s\n", array_help[i]);
-   i++;
-   }
-   return (1);
-   }
- */
 
+/**
+ * func_exit - exits the shell
+ * @args: the command being passed to exit
+ * Return: 0
+ */
 int func_exit(char **args)
 {
 	(void) args;
 	exit(0);
 }
 
+/**
+ * func_printenv - prints the current environment
+ * @args: the command being passed to print the environment
+ * Return: 1
+ */
 int func_printenv(char **args)
 {
 	char **array = environ;

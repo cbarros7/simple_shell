@@ -1,5 +1,9 @@
 #include "SimpleShell.h"
 
+/**
+ * read_input - stores whatever is passed to it as standard input
+ * Return: string containing the input
+ */
 char *read_input(void)
 {
 	char *line = NULL;
@@ -24,10 +28,14 @@ char *read_input(void)
 		free(line);
 		exit(0);
 	}
-
 	return (line);
 }
 
+/**
+ * sparse_str - devides a string into and array of strings
+ * @line: the string to be separated
+ * Return: tokens(array of strings) on succes or EXIT_FAILURE if fails
+ */
 char **sparse_str(char *line)
 {
 	int bufsize = TOK_BUFSIZE, posicion = 0;
@@ -62,16 +70,20 @@ char **sparse_str(char *line)
 	return (tokens);
 }
 
+/**
+ * execute - executes a command that is passed to it as the first aguement
+ * @args: command being passed to be executed
+ * Return: a pointer to a function if builtin or a forked process that
+ * executes a function in a path specified
+ */
 int execute(char **args)
 {
 	char *array_commands[] = {
-		/*"help",*/
 		"exit",
 		"env"
 	};
 
 	int (*array_functions[]) (char **) = {
-		/*&func_help,*/
 		&func_exit,
 		&func_printenv,
 	};
@@ -91,17 +103,19 @@ int execute(char **args)
 	return (child_process(args));
 }
 
-
-void prompt()
+/**
+ * prompt - prints '$' and waits for a user's input
+ */
+void prompt(void)
 {
-	char *buffer = getcwd(NULL, 0); /* DIRECTORIO ACTUAL - RECIBE EL INPUT EN PANTALLA */
+	char *buffer = getcwd(NULL, 0); /*directorio actiual - recibe input*/
 	char *token = strtok(buffer, "/");
 
 	while (token != NULL)
 		token = strtok(NULL, "/");
 
-	//if (isatty(STDIN_FILENO)) /* VERIFICA QUE EL STDIN SE ESTA UBICADO EN LA TERMINAL */
 	if (isatty(fileno(stdin)))
+	/*verifica si el STDIN refiere la terminal*/
 	{
 		printf("$ ");
 	}
