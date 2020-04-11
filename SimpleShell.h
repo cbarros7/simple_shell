@@ -22,7 +22,7 @@ int func_printenv(char **args);
 
 char *_which(char *args);
 char *_getenv(char *path);
-char **sparse_env_str(char *line);
+char *search_func(char **dir, char *cmd);
 int child_process(char **args);
 
 char *_strcat(char *dest, char *src);
@@ -39,7 +39,6 @@ void prompt();
 
 void *_realloc(void *ptr, unsigned int new_size);
 int _count_point(char *buffer);
-char *search_func(char **dir, char *cmd);
 
 typedef struct builtins{
 	char *array_commands;

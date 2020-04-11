@@ -53,11 +53,11 @@ char *_which(char *args)
 		return (NULL);
 	}
 
-	tokens = strtok (buffer, sparse);
+	tokens = strtok(buffer, sparse);
 
-	while(tokens)
+	while (tokens)
 	{
-		dir [i] = tokens;
+		dir[i] = tokens;
 		tokens = strtok(NULL, sparse);
 		i++;
 	}
@@ -66,7 +66,7 @@ char *_which(char *args)
 	file = search_func(dir, args);
 	i = 0;
 	free(dir);
-	return(file);
+	return (file);
 
 }
 
@@ -111,43 +111,49 @@ int child_process(char **args)
 }
 
 /**
- * sparse_env_str - separates the value of the env being passed to it
- * into strings
- * @line: array to be sparsed
- * Return: an array of strings containing the paths
+ * search_func - found directory
+ * @dir: Double pointer at the directory
+ * @cmd: command found
+ * Return: command
+ * On error, -1 is returned, and errno is set appropriately.
  */
-char **sparse_env_str(char *line)
-{
-	int bufsize = TOK_BUFSIZE, posicion = 0;
-	char **tokens = malloc(bufsize * sizeof(char *));
-	char *token, **tokens_backup;
-	char *delim = {":"};
 
-	if (!tokens)
+char *search_func(char **dir, char *cmd)
+{
+	int i = 0;
+	char *tmp;
+
+	tmp = malloc(sizeof(char *) * 100);
+
+	if (tmp == NULL)
+		return (NULL);
+
+	while (dir[i])
 	{
-		printf("error\n");
-		exit(EXIT_FAILURE);
-	}
-	token = strtok(line, delim);
-	while (token != NULL)
-	{
-		tokens[posicion] = token;
-		posicion++;
-		if (posicion >= bufsize)
+		DIR *d;
+		struct dirent *directory;
+
+		d = opendir(dir[i]);
+
+		if (d)
 		{
-			bufsize += TOK_BUFSIZE;
-			tokens_backup = tokens;
-			/*CONTAR LOS DOS :*/
-			tokens = _realloc(tokens, bufsize * sizeof(char *));
-			if (!tokens)
+			while ((directory = readdir(d)) != NULL)
 			{
-				free(tokens_backup);
-				printf("error\n");
-				exit(EXIT_FAILURE);
+				if ((_strcmp(directory->d_name, cmd)) == 0)
+				{
+					_strcpy(tmp, dir[i]);
+					_strcat(tmp, "/");
+					_strcat(tmp, directory->d_name);
+					closedir(d);
+					return (tmp);
+				}
 			}
+			closedir(d);
+			i++;
 		}
-		token = strtok(NULL, delim);
+
+
 	}
-	tokens[posicion] = NULL;
-	return (tokens);
+	free(tmp);
+	return (cmd);
 }

@@ -8,6 +8,7 @@ char *read_input(void)
 {
 	char *line = NULL;
 	size_t bufsize = 0;
+	int i;
 	ssize_t signal;
 
 	signal = getline(&line, &bufsize, stdin);
@@ -27,6 +28,16 @@ char *read_input(void)
 			write(STDOUT_FILENO, "\n", 1);
 		free(line);
 		exit(0);
+	}
+	else
+	{
+		for (i = 0; line[i] == ' ' && line[i + 1] == ' '; i++)
+			;
+		if (line[i + 1] == '\n')
+		{
+			free(line);
+			return (0);
+		}
 	}
 	return (line);
 }
