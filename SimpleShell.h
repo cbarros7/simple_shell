@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <dirent.h>
 #include <string.h>
 #define TOK_BUFSIZE 64
 #define TOK_DELIM " \t\r\n\a"
@@ -37,6 +38,8 @@ int execute(char **args);
 void prompt();
 
 void *_realloc(void *ptr, unsigned int new_size);
+int _count_point(char *buffer);
+char *search_func(char **dir, char *cmd);
 
 typedef struct builtins{
 	char *array_commands;

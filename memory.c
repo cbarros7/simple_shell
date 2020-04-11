@@ -29,3 +29,24 @@ void *_realloc(void *ptr, unsigned int new_size)
 	free(ptr);
 	return (str);
 }
+
+
+/**
+ * _count_point  - memory buffer
+ * @buffer: buffer
+ * Return: int
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+
+int _count_point(char *buffer)
+{
+	int i, count = 2;
+	char *separator = ":";
+
+	for (i = 0; buffer[i] != '\0'; i++)
+	{
+		if (buffer[i] == separator[0])
+			count++;
+	}
+	return (count);
+}

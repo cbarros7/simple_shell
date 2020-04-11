@@ -39,31 +39,35 @@ char *_getenv(char *env)
  */
 char *_which(char *args)
 {
-	char *tmp, **path, *sparse;
-	int size, i, size_path;
+	char *buffer, *tokens, **dir, *sparse = ":=";
+	char *file = NULL;
+	int size, i = 0;
 
-	size = _strlen((const char *)args);
-	if (args == NULL)
-		return (0);
+	buffer = _getenv("PATH");
+	size = _count_point(buffer);
 
-	sparse = _getenv("PATH");
-	path = sparse_env_str(sparse);
-	for (i = 0; path[i] != NULL; i++)
+	dir = malloc(sizeof(char *) * size);
+	if (dir == NULL)
 	{
-		size_path = _strlen(path[i]);
-		tmp = malloc(size_path + size + 1);
-		if (tmp == NULL)
-			return (0);
-		tmp = _strcpy(tmp, path[i]);
-		tmp = _strcat(tmp, "/");
-		tmp = _strcat(tmp, (char *)args);
-
-		if (_stat(tmp) == 0)
-		{
-			return (tmp);
-		}
+		perror("Error allocated memory");
+		return (NULL);
 	}
-	return (0);
+
+	tokens = strtok (buffer, sparse);
+
+	while(tokens)
+	{
+		dir [i] = tokens;
+		tokens = strtok(NULL, sparse);
+		i++;
+	}
+
+	dir[i] = NULL;
+	file = search_func(dir, args);
+	i = 0;
+	free(dir);
+	return(file);
+
 }
 
 /**

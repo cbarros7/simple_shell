@@ -115,7 +115,7 @@ void prompt(void)
 		token = strtok(NULL, "/");
 
 	if (isatty(fileno(stdin)))
-	/*verifica si el STDIN refiere la terminal*/
+		/*verifica si el STDIN refiere la terminal*/
 	{
 		printf("$ ");
 	}
