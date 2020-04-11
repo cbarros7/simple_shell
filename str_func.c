@@ -12,31 +12,15 @@ char *_strstr(char *str1, char *str2)
 {
 	int i, j;
 
-	if (_strlen(str1) > _strlen(str2))
+	for (i = 0; str1[i] != '\0'; i++)
 	{
-		for (i = 0; str1[i] != '\0'; i++)
+		for (j = 0; str2[j] != '\0'; j++)
 		{
-			for (j = 0; str2[j] != '\0'; j++)
-			{
-				if (str1[i + j] != str2[j])
-					break;
-			}
-			if (!str2[j])
-				return (&str1[i]);
+			if (str1[i + j] != str2[j])
+				break;
 		}
-	}
-	else
-	{
-		for (i = 0; str2[i] != '\0'; i++)
-		{
-			for (j = 0; str1[j] != '\0'; j++)
-			{
-				if (str2[i + j] != str1[j])
-					break;
-			}
-			if (!str1[j])
-				return (&str2[i]);
-		}
+		if (!str2[j])
+			return (&str1[i]);
 	}
 	return (NULL);
 }

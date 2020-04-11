@@ -20,7 +20,7 @@ int func_exit(char **args);
 int func_printenv(char **args);
 
 char *_which(char *args);
-char *_getenv(const char *path);
+char *_getenv(char *path);
 char **sparse_env_str(char *line);
 int child_process(char **args);
 
@@ -29,6 +29,7 @@ char *_strcpy(char *dest, char *src);
 int _strlen(const char *s);
 int _strcmp(char *s1, char *s2);
 char *_strstr(char *str1, char *str2);
+char *_strdup(char *str);
 
 char *read_input(void);
 char **sparse_str(char *line);

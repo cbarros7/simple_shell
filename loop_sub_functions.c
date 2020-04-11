@@ -6,32 +6,29 @@
  * Return: an array which contains the value of the environment or)
  * on failure
  */
-char *_getenv(const char *env)
+char *_getenv(char *env)
 {
-	char **environment;
-	char *tmp, *token;
+	char *tmp;
+	char *path = NULL;
+	char *found;
 	int i;
 
-	environment = environ;
-	for (; *environment; ++environment)
+	for (i = 0; environ[i]; i++)
 	{
-		tmp = *environment;
-		token = strtok(tmp, "=");
-		if (token == NULL)
-			return (0);
-		if (_strlen(token) != _strlen(env))
-			continue;
-		for (i = 0; i < _strlen(env); i++)
+		tmp = _strdup(environ[i]);
+		if (tmp == NULL)
 		{
-			if (env[i] != tmp[i])
-			{
-				break;
-			}
-			else if (env[i] == tmp[i])
-				return (strtok(NULL, "="));
+			free(tmp);
+			return (NULL);
 		}
+		path = strtok(tmp, "=");
+		if (_strcmp(path, env) == 0)
+		{
+			found = _strstr(environ[i], "/");
+		}
+		free(tmp);
 	}
-	return (0);
+	return (found);
 }
 
 /**
@@ -91,7 +88,7 @@ int child_process(char **args)
 		{
 			path = _which(args[0]);
 			execve(path, args, environ);
-			execve(args[0], args, environ);
+			/*execve(args[0], args, environ);*/
 			if (execve(path, args, NULL) == -1)
 			{
 				printf("error: command not found\n");
