@@ -91,9 +91,7 @@ int child_process(char **args)
 		if (args != NULL)
 		{
 			path = _which(args[0]);
-			execve(path, args, environ);
-			/*execve(args[0], args, environ);*/
-			if (execve(path, args, NULL) == -1)
+			if (execve(path, args, environ) == -1)
 			{
 				printf("error: command not found\n");
 				exit(EXIT_FAILURE);
