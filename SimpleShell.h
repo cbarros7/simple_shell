@@ -23,7 +23,7 @@ int func_printenv(char **args);
 char *_which(char *args);
 char *_getenv(char *path);
 char *search_func(char **dir, char *cmd);
-int child_process(char **args, char **argv);
+int child_process(char **args, char **argv, int count);
 
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
@@ -34,7 +34,7 @@ char *_strdup(char *str);
 
 char *read_input(void);
 char **sparse_str(char *line);
-int execute(char **args, char **argv);
+int execute(char **args, char **argv, int count);
 void prompt();
 
 void *_realloc(void *ptr, unsigned int new_size);
