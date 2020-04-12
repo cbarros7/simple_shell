@@ -1,0 +1,89 @@
+.TH "MINI SHELL" "1" "APRIL 2020" "MINI SHELL" "Man Page Mini Shell"
+.SH NAME
+.B Mini Shell 
+- Simple UNIX command interpreter
+.SH SYNOPSIS
+.B Mini Shell
+.SH DESCRIPTION
+custom version UNIX command language interpreter built as a project for Holberton School. This mini shell reads commands from either interactive  mode and non-interactive mode.
+
+.SH INVOCATION
+.IP
+.PP
+.nf
+
+Mini Shell the user can have the experience in an interactive and non-interactive way. On the one hand, if it is invoked with a standard input that is not connected to the terminal, Mini Shell reads and executes the received commands in order. 
+
+To use the Mini Shell interactive mode use \fB isatty(3)\fR. Immediately the user will see a warning \fI$ \fR indicating that our shell is ready to read the command. 
+
+On the other hand, in non-interactive mode the user will enter command line arguments, so \fB Mini Shell\fR treats the first argument as a file from which to read the commands.
+In interactive mode, you can type commands from the keyboard:
+
+$ ./hsh
+$ /bin/ls
+
+In non-interactive mode, you can pipe commands into the program using echo or cat:
+
+Non-interactive:
+$ echo "/bin/ls" | ./hsh
+$ cat file_name | ./hsh
+
+.SH BUILTIN COMMANDS:
+.B env
+prints the environment
+
+
+.SH SYNTAX
+.IP
+.PP
+.nf
+
+To execute the shell:
+
+$ ./hsh
+
+You can use the same syntax for running commands in other shells:
+
+<command> <flags or options> <argument 1> <argument 2> ...
+
+In non-interactive mode:
+
+<command> | ./hsh
+
+.SH EXAMPLE
+.IP
+.PP
+.NF
+
+Interactive mode:
+
+$ /bin/ls
+
+Non-interactive mode:
+
+$ echo "/bin/ls" | ./hsh
+
+.IP
+
+.SH RETURN
+
+Mini Shell returns zero indicating success and non-zero indicanting failure.
+
+.SH BUGS
+No known bugs.
+
+.SH AUTHOR
+.IP
+.PP
+.NF
+Carlos Barros <1543@holbertonschool.com>
+
+Andrew Kalil <1541@holbertonschool.com>
+
+.SH "SEE ALSO"
+access(2), bash (1), chdir(2), execve(2), _exit(2), exit(3), fflush(3), fork(2), free(3), isatty(3), getcwd(3), malloc(3), open(2), read(2), sh(1), signal(2), stat(2), wait(2), write(2)
+
+.SH COPYRIGHT
+MIT License
+.PP
+Copyright (c) 2020 Carlos Barros & Andrew Kalil

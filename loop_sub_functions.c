@@ -75,7 +75,7 @@ char *_which(char *args)
  * @args: the command to be executed
  * Return: 1
  */
-int child_process(char **args)
+int child_process(char **args, char **argv)
 {
 	pid_t pid;
 	int status;
@@ -93,7 +93,7 @@ int child_process(char **args)
 			path = _which(args[0]);
 			if (execve(path, args, environ) == -1)
 			{
-				printf("error: command not found\n");
+				printf("%s: %s: not found\n", argv[0], path);
 				exit(EXIT_FAILURE);
 			}
 		}

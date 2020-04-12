@@ -5,7 +5,7 @@
  * for another command unless told to exit
  * Return: EXIT_SUCCESS
  */
-int main(void)
+int main(int argc __attribute__((unused)), char **argv)
 {
 	char *line;
 	char **args;
@@ -21,7 +21,7 @@ int main(void)
 		/*separates string to get command and atgs*/
 		args = sparse_str(line);
 		/*executes args*/
-		status = execute(args);
+		status = execute(args, argv);
 		free(line);
 		free(args);
 	} while (status);
