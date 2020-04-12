@@ -88,22 +88,13 @@ The **Mini Shell** supports most shell commands, such as ```cat```, ```pwd```, `
 |[search_func](https://github.com/cbarros7/simple_shell/blob/master/loop_sub_functions.c) | Search directory. |
 |[_realloc](https://github.com/cbarros7/simple_shell/blob/master/memory.c) | Reallocates a space in memory. |
 |[_count_point](https://github.com/cbarros7/simple_shell/blob/master/memory.c) | Memory buffer. |
-
 |[handle_signal](https://github.com/cbarros7/simple_shell/blob/master/signals.c) | Prints new line and prompt when CTRL + C is passed as input. |
-
 |[_stat](https://github.com/cbarros7/simple_shell/blob/master/signals.c) | Displays file or file system status. |
-
 |[_strstr](https://github.com/cbarros7/simple_shell/blob/master/str_func.c) | Locates a substring. |
-
 |[_strlen](https://github.com/cbarros7/simple_shell/blob/master/str_func.c) | Returns a string. |
-
 |[_strcpy](https://github.com/cbarros7/simple_shell/blob/master/str_func.c) | Copies a string pointed to by src to dest. |
-
-
 |[_strcat](https://github.com/cbarros7/simple_shell/blob/master/str_func.c) | Concatenates two strings. |
-
 |[_strcmp](https://github.com/cbarros7/simple_shell/blob/master/str_func.c) | Compare two strings. |
-
 |[_strdup](https://github.com/cbarros7/simple_shell/blob/master/str_func_2.c) | Copies a string to another. |
 
 
