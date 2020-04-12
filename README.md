@@ -142,7 +142,7 @@ The following built-ins are supported by the *Mini Shell*:
 **Mini Shell** returns zero indicating success and non-zero indicanting failure.
 
 ## Bugs :loudspeaker:
-Memory problems and exit does not work
+No known bugs.
 
 ## Authors :black_nib:
 * **Carlos Barros** [Github](https://github.com/cbarros7)
