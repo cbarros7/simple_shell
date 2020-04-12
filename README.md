@@ -122,13 +122,14 @@ $ cat file_name | ./hsh
 ```
 
 You can use the same syntax for running commands in other shells:
-
+```
 <command> <flags or options> <argument 1> <argument 2> ...
+```
 
 In non-interactive mode:
-
+```
 <command> | ./hsh
-
+```
 
 ## Built-Ins  :hammer:
 The following built-ins are supported by the *Mini Shell*:
@@ -136,14 +137,14 @@ The following built-ins are supported by the *Mini Shell*:
 + ```env``` - Print the current environment
 + ```exit``` - exit program sucessfully
 
-##Return :clap:
+## Return :clap:
 
 **Mini Shell** returns zero indicating success and non-zero indicanting failure.
 
-## BUGS :loudspeaker:
+## Bugs :loudspeaker:
 Memory problems and exit does not work
 
-## AUTHORS :black_nib:
+## Authors :black_nib:
 * **Carlos Barros** [Github](https://github.com/cbarros7)
 * **Andrew Kalil** [Github](https://github.com/AndrewKalil)
 
