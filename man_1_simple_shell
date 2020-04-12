@@ -1,9 +1,10 @@
-.TH "MINI SHELL" "1" "APRIL 2020" "MINI SHELL" "Man Page Mini Shell"
+.TH "MINI SHELL" "3" "APRIL 2020" "MINI SHELL" "Man Page Mini Shell"
 .SH NAME
 .B Mini Shell 
 - Simple UNIX command interpreter
 .SH SYNOPSIS
-.B Mini Shell
+.B Mini Shell -
+This is a humble and simple implementation of a UNIX command line interpreter.
 .SH DESCRIPTION
 custom version UNIX command language interpreter built as a project for Holberton School. This mini shell reads commands from either interactive  mode and non-interactive mode.
 
