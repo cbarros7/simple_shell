@@ -3,13 +3,15 @@
 /**
  * main - creates a prompt that reads input, sparses it, executes and waits
  * for another command unless told to exit
+ * @argc: number of arguemnets
+ * @argv: array of arguements
  * Return: EXIT_SUCCESS
  */
 int main(int argc __attribute__((unused)), char **argv)
 {
 	char *line;
 	char **args;
-	int status;
+	int status, count = 0;
 
 	signal(SIGINT, handle_signal);
 	do {
@@ -21,7 +23,8 @@ int main(int argc __attribute__((unused)), char **argv)
 		/*separates string to get command and atgs*/
 		args = sparse_str(line);
 		/*executes args*/
-		status = execute(args, argv);
+		count += 1;
+		status = execute(args, argv, count);
 		free(line);
 		free(args);
 	} while (status);

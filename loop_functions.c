@@ -84,10 +84,11 @@ char **sparse_str(char *line)
 /**
  * execute - executes a command that is passed to it as the first aguement
  * @args: command being passed to be executed
+ * @argv: external input arguemnets
  * Return: a pointer to a function if builtin or a forked process that
  * executes a function in a path specified
  */
-int execute(char **args, char **argv)
+int execute(char **args, char **argv, int count)
 {
 	char *array_commands[] = {
 		"exit",
@@ -111,7 +112,7 @@ int execute(char **args, char **argv)
 		}
 		i++;
 	}
-	return (child_process(args, argv));
+	return (child_process(args, argv, count));
 }
 
 /**

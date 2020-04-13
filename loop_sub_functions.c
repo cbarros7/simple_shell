@@ -64,7 +64,6 @@ char *_which(char *args)
 
 	dir[i] = NULL;
 	file = search_func(dir, args);
-	i = 0;
 	free(dir);
 	return (file);
 
@@ -73,9 +72,10 @@ char *_which(char *args)
 /**
  * child_process - executes a command if the path of it is an executable file
  * @args: the command to be executed
+ * @argv: external input arguements
  * Return: 1
  */
-int child_process(char **args, char **argv)
+int child_process(char **args, char **argv, int count)
 {
 	pid_t pid;
 	int status;
@@ -93,7 +93,7 @@ int child_process(char **args, char **argv)
 			path = _which(args[0]);
 			if (execve(path, args, environ) == -1)
 			{
-				printf("%s: %s: not found\n", argv[0], path);
+				printf("%s: %d: %s: not found\n", argv[0], count,  path);
 				exit(EXIT_FAILURE);
 			}
 		}
