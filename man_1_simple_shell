@@ -1,9 +1,9 @@
-.TH "MINI SHELL" "3" "APRIL 2020" "MINI SHELL" "Man Page Mini Shell"
+.TH "MR ROBOT" "3" "APRIL 2020" "MR ROBOT" "Man Page Mr. Robot"
 .SH NAME
-.B Mini Shell 
+.B Mr. Robot
 - Simple UNIX command interpreter
 .SH SYNOPSIS
-.B Mini Shell -
+.B Mr. Robot -
 This is a humble and simple implementation of a UNIX command line interpreter.
 .SH DESCRIPTION
 custom version UNIX command language interpreter built as a project for Holberton School. This mini shell reads commands from either interactive  mode and non-interactive mode.
@@ -13,11 +13,11 @@ custom version UNIX command language interpreter built as a project for Holberto
 .PP
 .nf
 
-Mini Shell the user can have the experience in an interactive and non-interactive way. On the one hand, if it is invoked with a standard input that is not connected to the terminal, Mini Shell reads and executes the received commands in order. 
+Mr. Robot the user can have the experience in an interactive and non-interactive way. On the one hand, if it is invoked with a standard input that is not connected to the terminal, Mr. Robot reads and executes the received commands in order. 
 
-To use the Mini Shell interactive mode use \fB isatty(3)\fR. Immediately the user will see a warning \fI$ \fR indicating that our shell is ready to read the command. 
+To use the Mr. Robot interactive mode use \fB isatty(3)\fR. Immediately the user will see a warning \fI$ \fR indicating that our shell is ready to read the command. 
 
-On the other hand, in non-interactive mode the user will enter command line arguments, so \fB Mini Shell\fR treats the first argument as a file from which to read the commands.
+On the other hand, in non-interactive mode the user will enter command line arguments, so \fB Mr. Robot\fR treats the first argument as a file from which to read the commands.
 In interactive mode, you can type commands from the keyboard:
 
 $ ./hsh
@@ -68,7 +68,7 @@ $ echo "/bin/ls" | ./hsh
 
 .SH RETURN
 
-Mini Shell returns zero indicating success and non-zero indicanting failure.
+Mr. Robot returns zero indicating success and non-zero indicanting failure.
 
 .SH BUGS
 No known bugs.

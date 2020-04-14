@@ -1,4 +1,4 @@
-# Mini Shell - Holberton School :shell:
+# Mr. Robot - Holberton School :robot:
 
 
 ## Synopsis :thought_balloon:
@@ -69,7 +69,7 @@ Once compiled, to start the program, run:
 To exit the program, run:
 ```$ exit```
   
-The **Mini Shell** supports most shell commands, such as ```cat```, ```pwd```, ```ls -la``` and more.
+The **Mr. Robot** supports most shell commands, such as ```cat```, ```pwd```, ```ls -la``` and more.
 
 
 ## List of functions :page_facing_up:
@@ -99,11 +99,11 @@ The **Mini Shell** supports most shell commands, such as ```cat```, ```pwd```, `
 
 
 ## Syntax :notebook_with_decorative_cover:
-**Mini Shell** the user can have the experience in an interactive and non-interactive way. On the one hand, if it is invoked with a standard input that is not connected to the terminal, Mini Shell reads and executes the received commands in order.
+**Mr. Robot** the user can have the experience in an interactive and non-interactive way. On the one hand, if it is invoked with a standard input that is not connected to the terminal, *Mr. Robot* reads and executes the received commands in order.
 
-To use the **Mini Shell** interactive mode use isatty(3). Immediately the user will see a warning $ indicating that our shell is ready to read the command.
+To use the **Mr. Robot** interactive mode use isatty(3). Immediately the user will see a warning $ indicating that our shell is ready to read the command.
 
-On the other hand, in non-interactive mode the user will enter command line arguments, so **Mini Shell** treats the first argument as a file from which to read the commands.
+On the other hand, in non-interactive mode the user will enter command line arguments, so **Mr. Robot** treats the first argument as a file from which to read the commands.
 In interactive mode, you can type commands from the keyboard:
 
 Example:
@@ -132,14 +132,14 @@ In non-interactive mode:
 ```
 
 ## Built-Ins  :hammer:
-The following built-ins are supported by the *Mini Shell*:
+The following built-ins are supported by the *Mr. Robot*:
   
 + ```env``` - Print the current environment
 + ```exit``` - exit program sucessfully
 
 ## Return :clap:
 
-**Mini Shell** returns zero indicating success and non-zero indicanting failure.
+**Mr. Robot** returns zero indicating success and non-zero indicanting failure.
 
 ## Bugs :loudspeaker:
 No known bugs.

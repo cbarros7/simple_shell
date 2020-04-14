@@ -87,6 +87,7 @@ int child_process(char **args, char **argv, int count)
 	if (pid  < 0)
 	{
 		printf("error\n");
+		return (1);
 	}
 	else if (pid == 0)
 	{
