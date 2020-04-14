@@ -32,5 +32,6 @@ int execute(char **args, char **argv, int count);
 void prompt(void);
 void *_realloc(void *ptr, unsigned int new_size);
 int _count_point(char *buffer);
+char *itoa(long int num, int base);
 #endif
 
