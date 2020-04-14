@@ -37,12 +37,13 @@ char *_strncpy_curr(char *dest, char *src, int n);
 char *read_input(void);
 char **sparse_str(char *line);
 int execute(char **args, char **argv, int count);
-void prompt();
+void prompt(void);
 
 void *_realloc(void *ptr, unsigned int new_size);
 int _count_point(char *buffer);
 
-typedef struct builtins{
+typedef struct builtins
+{
 	char *array_commands;
 	int (*array_functions)(char **);
 } builtins_t;
