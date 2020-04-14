@@ -41,20 +41,11 @@ char *_which(char *args)
 {
 	char *buffer, *tokens, **dir, *sparse = ":=";
 	char *file = NULL;
-	char *curpath;
-	int size, n, i = 0;
+	int size, i = 0;
 
-	if (args[0] == 46 && args[1] == 47)
-	{
-		n = _strlen(args);
-		curpath = malloc(sizeof(char) * n);
-		if (curpath == NULL)
-			return (0);
-		_strncpy_curr(curpath, args, n);
-		file = current_dir_func(curpath);
-		return (file);
-	}
 	buffer = _getenv("PATH");
+	if (buffer == NULL)
+		return (args);
 	size = _count_point(buffer);
 	dir = malloc(sizeof(char *) * size);
 	if (dir == NULL)
@@ -104,7 +95,7 @@ int child_process(char **args, char **argv, int count)
 			path = _which(args[0]);
 			if (execve(path, args, environ) == -1)
 			{
-				printf("%s: %d: %s: not found\n", argv[0], count,  path);
+				printf("%s: %d: %s: not found\n", argv[0], count,  args[0]);
 				exit(EXIT_FAILURE);
 			}
 		}
@@ -165,51 +156,4 @@ char *search_func(char **dir, char *cmd)
 	}
 	free(tmp);
 	return (cmd);
-}
-
-/**
- * current_dir_func - searches for executable file in current directory
- * @args: command to look for
- * Return: the path of the executable function or the name of the input if
- * fail
- */
-char *current_dir_func(char *args)
-{
-	char *path, *file;
-	char *buf = NULL;
-	int size = 100;
-	DIR *d;
-	struct dirent *directory;
-
-	path = getcwd(buf, size);
-	if (path == NULL)
-	{
-		return (0);
-	}
-	file = malloc(sizeof(char *) * 100);
-	if (file == NULL)
-	{
-		return (0);
-	}
-	if (path)
-	{
-		d = opendir(path);
-		if (d)
-		{
-			while ((directory = readdir(d)) != NULL)
-			{
-				if ((_strcmp(directory->d_name, args)) == 0)
-				{
-					_strcpy(file, path);
-					_strcat(file, "/");
-					_strcat(file, directory->d_name);
-					closedir(d);
-					return (file);
-				}
-			}
-			closedir(d);
-		}
-	}
-	free(file);
-	return (args);
 }
