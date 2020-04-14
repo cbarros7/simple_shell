@@ -33,3 +33,4 @@ void prompt(void);
 void *_realloc(void *ptr, unsigned int new_size);
 int _count_point(char *buffer);
 #endif
+

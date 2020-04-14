@@ -79,12 +79,12 @@ char *_which(char *args)
  */
 int child_process(char **args, char **argv, int count)
 {
-	pid_t pid;
 	int status;
 	char *path;
 
-	pid = fork();
-	if (pid  < 0)
+	pid_t pid = fork();
+
+	if (pid < 0)
 	{
 		printf("error\n");
 		return (1);
@@ -191,3 +191,4 @@ int permission(char *filename)
 	i = -10;
 	return (i);
 }
+
