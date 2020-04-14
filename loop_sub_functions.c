@@ -93,9 +93,18 @@ int child_process(char **args, char **argv, int count)
 		if (args != NULL)
 		{
 			path = _which(args[0]);
-			if (execve(path, args, environ) == -1)
+			if (permission(path) == 1)
+			{
+				execve(path, args, environ);
+			}
+			else if (permission(path) == -10)
 			{
 				printf("%s: %d: %s: not found\n", argv[0], count,  args[0]);
+				exit(EXIT_FAILURE);
+			}
+			else
+			{
+				printf("%s: %d: %s: Permision denied\n", argv[0], count,  args[0]);
 				exit(EXIT_FAILURE);
 			}
 		}
@@ -156,4 +165,26 @@ char *search_func(char **dir, char *cmd)
 	}
 	free(tmp);
 	return (cmd);
+}
+
+/**
+ * permission - Check if a filename have permissions
+ * @filename: Filename to check
+ * Return: On success 1, On error -1, if file not found -10
+ **/
+int permission(char *filename)
+{
+	int i;
+	struct stat stats;
+
+	if (stat(filename, &stats) == 0)
+	{
+		if (stats.st_mode & X_OK)
+			return (1);
+		else
+			return (-1);
+	}
+
+	i = -10;
+	return (i);
 }

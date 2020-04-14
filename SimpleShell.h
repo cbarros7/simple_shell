@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <string.h>
+#include <fcntl.h>
 #define TOK_BUFSIZE 64
 #define TOK_DELIM " \t\r\n\a"
 
@@ -24,7 +25,7 @@ char *_which(char *args);
 char *_getenv(char *path);
 char *search_func(char **dir, char *cmd);
 int child_process(char **args, char **argv, int count);
-char *current_dir_func(char *args);
+int permission(char *filename);
 
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);

@@ -7,7 +7,8 @@
 void handle_signal(int signal)
 {
 	(void) signal;
-	printf("\n{^_^} ");
+	write(1, "\033[0;36m\n{^_^} ", 15);
+	write(1, "\033[0m ", 4);
 	fflush(stdout);
 }
 

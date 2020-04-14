@@ -17,7 +17,7 @@ char *read_input(void)
 		perror("Error allocating memory for buffer");
 		return (0);
 	}
-	if (signal == 1)
+	if (signal == -1)
 	{
 		free(line);
 		return (NULL);
@@ -33,7 +33,7 @@ char *read_input(void)
 	{
 		for (i = 0; line[i] == ' ' && line[i + 1] == ' '; i++)
 			;
-		if (line[i + 1] == '\n')
+		if (!line[i] && line[i + 1] == '\n')
 		{
 			free(line);
 			return (0);
@@ -130,7 +130,8 @@ void prompt(void)
 	if (isatty(fileno(stdin)))
 		/*verifica si el STDIN refiere la terminal*/
 	{
-		printf("{^_^} ");
+		write(1, "\033[0;36m{^_^} ", 13);
+		write(1, "\033[0m ", 4);
 	}
 
 	free(buffer); /*LIBERA MEMORIA*/
