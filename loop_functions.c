@@ -108,7 +108,7 @@ int execute(char **args, char **argv, int count)
 		return (1);
 	while (i < size)
 	{
-		if (strcmp(args[0], array_commands[i]) == 0)
+		if (_strcmp(args[0], array_commands[i]) == 0)
 		{
 			return ((*array_functions[i])(args));
 		}
