@@ -17,7 +17,6 @@ extern char **environ;
 void handle_signal(int signal);
 int _stat(char *s);
 
-/*int func_help(char **args);*/
 int func_exit(char **args);
 int func_printenv(char **args);
 
@@ -33,7 +32,6 @@ int _strlen(const char *s);
 int _strcmp(char *s1, char *s2);
 char *_strstr(char *str1, char *str2);
 char *_strdup(char *str);
-char *_strncpy_curr(char *dest, char *src, int n);
 
 char *read_input(void);
 char **sparse_str(char *line);
@@ -42,11 +40,5 @@ void prompt(void);
 
 void *_realloc(void *ptr, unsigned int new_size);
 int _count_point(char *buffer);
-
-typedef struct builtins
-{
-	char *array_commands;
-	int (*array_functions)(char **);
-} builtins_t;
 
 #endif

@@ -1,4 +1,4 @@
-#include "SimpleShell.h"
+#include "simpleshell.h"
 
 /**
  * func_exit - exits the shell

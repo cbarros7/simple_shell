@@ -1,4 +1,4 @@
-#include "SimpleShell.h"
+#include "simpleshell.h"
 
 /**
  * read_input - stores whatever is passed to it as standard input
@@ -72,6 +72,7 @@ char **sparse_str(char *line)
 			{
 				free(tokens_backup);
 				printf("error\n");
+				free(line);
 				exit(EXIT_FAILURE);
 			}
 		}

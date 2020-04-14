@@ -1,4 +1,4 @@
-#include "SimpleShell.h"
+#include "simpleshell.h"
 
 /**
  * *_strstr - locates a substring
@@ -110,4 +110,3 @@ int _strcmp(char *s1, char *s2)
 	}
 	return (*p1 - *p2);
 }
-

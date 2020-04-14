@@ -1,4 +1,4 @@
-#include "SimpleShell.h"
+#include "simpleshell.h"
 
 /**
  * _getenv - provides the value of the environment passed to it as arguement
@@ -97,19 +97,22 @@ int child_process(char **args, char **argv, int count)
 			if (permission(path) == 1)
 			{
 				execve(path, args, environ);
+				free(path);
 			}
 			else if (permission(path) == -10)
 			{
 				printf("%s: %d: %s: not found\n", argv[0], count,  args[0]);
+				free(path);
 				exit(EXIT_FAILURE);
 			}
 			else
 			{
 				printf("%s: %d: %s: Permision denied\n", argv[0], count,  args[0]);
+				free(path);
 				exit(EXIT_FAILURE);
 			}
+			free(path);
 		}
-		free(path);
 	}
 	else
 	{
@@ -134,7 +137,6 @@ char *search_func(char **dir, char *cmd)
 	char *tmp;
 
 	tmp = malloc(sizeof(char *) * 100);
-
 	if (tmp == NULL)
 		return (NULL);
 

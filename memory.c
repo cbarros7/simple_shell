@@ -1,4 +1,4 @@
-#include "SimpleShell.h"
+#include "simpleshell.h"
 /**
  * _realloc - Reallocates a space in memory
  * @ptr: The pointer with allocated size in memory
