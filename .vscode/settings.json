@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "wait.h": "c",
-        "string.h": "c",
-        "typeinfo": "c"
-    }
-}
