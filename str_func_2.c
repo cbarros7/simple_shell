@@ -23,3 +23,26 @@ char *_strdup(char *str)
 	}
 	return (s);
 }
+
+/**
+ * _strncpy_curr - copies a string
+ * @dest: variable where string will be copied
+ * @src: variable that will provide the string
+ * @n: size limit of bytes that can be coppied
+ * Return: dest
+ */
+char *_strncpy_curr(char *dest, char *src, int n)
+{
+	int i, j = 0;
+
+	i = 2;
+	while (src[i] != '\0' && i < n)
+	{
+		dest[j] = src[i];
+		i++;
+		j++;
+	}
+	dest[j] = '\0';
+
+	return (dest);
+}

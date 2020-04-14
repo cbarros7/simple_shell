@@ -7,7 +7,7 @@
 void handle_signal(int signal)
 {
 	(void) signal;
-	printf("\n$ ");
+	printf("\n{^_^} ");
 	fflush(stdout);
 }
 

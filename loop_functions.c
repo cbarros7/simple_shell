@@ -85,6 +85,7 @@ char **sparse_str(char *line)
  * execute - executes a command that is passed to it as the first aguement
  * @args: command being passed to be executed
  * @argv: external input arguemnets
+ * @count: command prompt counter
  * Return: a pointer to a function if builtin or a forked process that
  * executes a function in a path specified
  */
@@ -129,7 +130,7 @@ void prompt(void)
 	if (isatty(fileno(stdin)))
 		/*verifica si el STDIN refiere la terminal*/
 	{
-		printf("$ ");
+		printf("{^_^} ");
 	}
 
 	free(buffer); /*LIBERA MEMORIA*/

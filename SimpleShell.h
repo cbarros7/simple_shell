@@ -24,6 +24,7 @@ char *_which(char *args);
 char *_getenv(char *path);
 char *search_func(char **dir, char *cmd);
 int child_process(char **args, char **argv, int count);
+char *current_dir_func(char *args);
 
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
@@ -31,6 +32,7 @@ int _strlen(const char *s);
 int _strcmp(char *s1, char *s2);
 char *_strstr(char *str1, char *str2);
 char *_strdup(char *str);
+char *_strncpy_curr(char *dest, char *src, int n);
 
 char *read_input(void);
 char **sparse_str(char *line);
