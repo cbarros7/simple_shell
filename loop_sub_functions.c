@@ -6,25 +6,25 @@
  * Return: an array which contains the value of the environment or)
  * on failure
  */
-char *_getenv(char *env)
+char *_getenv(char *name, char **env)
 {
 	char *tmp;
 	char *path = NULL;
 	char *found;
 	int i;
 
-	for (i = 0; environ[i]; i++)
+	for (i = 0; env[i]; i++)
 	{
-		tmp = _strdup(environ[i]);
+		tmp = _strdup(env[i]);
 		if (tmp == NULL)
 		{
 			free(tmp);
 			return (NULL);
 		}
 		path = strtok(tmp, "=");
-		if (_strcmp(path, env) == 0)
+		if (_strcmp(path, name) == 0)
 		{
-			found = _strstr(environ[i], "/");
+			found = _strstr(env[i], "/");
 		}
 		free(tmp);
 	}
@@ -37,13 +37,13 @@ char *_getenv(char *env)
  * @args: the command that is being passed to it
  * Return: the complete path of the command or 0 on failure
  */
-char *_which(char *args)
+char *_which(char *args, char **env)
 {
 	char *buffer, *tokens, **dir, *sparse = ":=";
 	char *file = NULL;
 	int size, i = 0;
 
-	buffer = _getenv("PATH");
+	buffer = _getenv("PATH", env);
 	if (buffer == NULL)
 		return (args);
 	size = _count_point(buffer);
@@ -78,7 +78,7 @@ char *_which(char *args)
  * @count: number of prompt
  * Return: 1
  */
-int child_process(char **args, char **argv, int count)
+int child_process(char **args, char **argv, int count, char **env)
 {
 	int status;
 	char *path;
@@ -94,9 +94,9 @@ int child_process(char **args, char **argv, int count)
 	{
 		if (args != NULL)
 		{
-			path = _which(args[0]);
+			path = _which(args[0], env);
 			access = _access(path);
-			if (execve(path, args, environ) == -1)
+			if (execve(path, args, env) == -1)
 			{
 				_error(argv[0], count, args[0], access);
 				free(path);

@@ -19,13 +19,15 @@ int func_exit(char **args)
  */
 int func_printenv(char **args)
 {
-	char **array = environ;
 	int i;
+	char **env;
 	(void) args;
 
-	for (i = 0; array[i]; i++)
+	env = environ;
+
+	for (i = 0; env[i]; i++)
 	{
-		write(1, array[i], _strlen(array[i]));
+		write(1, env[i], _strlen(env[i]));
 	}
 
 	return (1);

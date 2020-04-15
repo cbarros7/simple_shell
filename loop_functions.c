@@ -90,7 +90,7 @@ char **sparse_str(char *line)
  * Return: a pointer to a function if builtin or a forked process that
  * executes a function in a path specified
  */
-int execute(char **args, char **argv, int count, char *line)
+int execute(char **args, char **argv, int count, char *line, char **env)
 {
 	char *array_commands[] = {
 		"exit",
@@ -115,7 +115,7 @@ int execute(char **args, char **argv, int count, char *line)
 		}
 		i++;
 	}
-	return (child_process(args, argv, count));
+	return (child_process(args, argv, count, env));
 }
 
 /**

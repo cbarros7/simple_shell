@@ -7,7 +7,7 @@
  * @argv: array of arguements
  * Return: EXIT_SUCCESS
  */
-int main(int argc __attribute__((unused)), char **argv)
+int main(int argc __attribute__((unused)), char **argv, char **env)
 {
 	char *line;
 	char **args;
@@ -24,7 +24,7 @@ int main(int argc __attribute__((unused)), char **argv)
 		args = sparse_str(line);
 		/*executes args*/
 		count += 1;
-		status = execute(args, argv, count, line);
+		status = execute(args, argv, count, line, env);
 		free(line);
 		free(args);
 	} while (status);

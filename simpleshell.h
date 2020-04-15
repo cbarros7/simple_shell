@@ -19,10 +19,10 @@ int *_error(char *argv, int count, char *args, int access);
 int func_exit(char **args);
 int func_printenv(char **args);
 
-char *_which(char *args);
-char *_getenv(char *path);
+char *_which(char *args, char **env);
+char *_getenv(char *name, char **env);
 char *search_func(char **dir, char *cmd);
-int child_process(char **args, char **argv, int count);
+int child_process(char **args, char **argv, int count, char **env);
 int _access(char *filename);
 
 char *_strcat(char *dest, char *src);
@@ -35,7 +35,7 @@ char *_itoa(int num, int base);
 
 char *read_input(void);
 char **sparse_str(char *line);
-int execute(char **args, char **argv, int count, char *line);
+int execute(char **args, char **argv, int count, char *line, char **env);
 void prompt(void);
 
 void *_realloc(void *ptr, unsigned int new_size);
