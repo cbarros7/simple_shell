@@ -87,6 +87,7 @@ char **sparse_str(char *line)
  * @argv: external input arguemnets
  * @count: number of prompt
  * @line: line to be freed
+ * @env: environment variable
  * Return: a pointer to a function if builtin or a forked process that
  * executes a function in a path specified
  */

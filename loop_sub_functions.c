@@ -3,6 +3,7 @@
 /**
  * _getenv - provides the value of the environment passed to it as arguement
  * @env: the environment to be passed as arguement
+ * @name: string containing name of env variable
  * Return: an array which contains the value of the environment or)
  * on failure
  */
@@ -35,6 +36,7 @@ char *_getenv(char *name, char **env)
  * _which - identifies the path of the command(*args) that is being passed
  * to it
  * @args: the command that is being passed to it
+ * @env: environment variable
  * Return: the complete path of the command or 0 on failure
  */
 char *_which(char *args, char **env)
@@ -76,6 +78,7 @@ char *_which(char *args, char **env)
  * @args: the command to be executed
  * @argv: external input arguements
  * @count: number of prompt
+ * @env: environment variable
  * Return: 1
  */
 int child_process(char **args, char **argv, int count, char **env)

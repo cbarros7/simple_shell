@@ -5,6 +5,7 @@
  * for another command unless told to exit
  * @argc: number of arguemnets
  * @argv: array of arguements
+ * @env: environment variable
  * Return: EXIT_SUCCESS
  */
 int main(int argc __attribute__((unused)), char **argv, char **env)
