@@ -120,10 +120,11 @@ int execute(char **args, char **argv, int count, char *line, char **env)
 }
 
 /**
- * prompt - prints '{^_^}' and waits for a user's input
+ * prompt - prints '$' and waits for a user's input
  */
 void prompt(void)
 {
+	char *prompt = {"$ "};
 	char *buffer = getcwd(NULL, 0); /*directorio actiual - recibe input*/
 	char *token = strtok(buffer, "/");
 
@@ -132,7 +133,7 @@ void prompt(void)
 
 	if (isatty(STDIN_FILENO))
 	{
-		write(1, "{^_^} ", 6);
+		write(1, prompt, _strlen(prompt));
 	}
 
 	free(buffer);
