@@ -122,7 +122,7 @@ int execute(char **args, char **argv, int count, char *line)
 }
 
 /**
- * prompt - prints '$' and waits for a user's input
+ * prompt - prints '{^_^}' and waits for a user's input
  */
 void prompt(void)
 {

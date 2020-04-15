@@ -28,7 +28,6 @@ void handle_signal(int signal)
 {
 	(void) signal;
 	write(1, "\n{^_^} ", 7);
-	/*write(1, "\033[0m ", 4);*/
 	fflush(stdout);
 }
 
