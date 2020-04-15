@@ -50,4 +50,3 @@ int _count_point(char *buffer)
 	}
 	return (count);
 }
-

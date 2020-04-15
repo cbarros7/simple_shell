@@ -55,7 +55,7 @@ char **sparse_str(char *line)
 
 	if (!tokens)
 	{
-		printf("error\n");
+		perror("error");
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, TOK_DELIM);
@@ -71,7 +71,7 @@ char **sparse_str(char *line)
 			if (!tokens)
 			{
 				free(tokens_backup);
-				printf("error\n");
+				perror("error");
 				free(line);
 				exit(EXIT_FAILURE);
 			}
@@ -131,10 +131,10 @@ void prompt(void)
 	if (isatty(fileno(stdin)))
 		/*verifica si el STDIN refiere la terminal*/
 	{
-		write(1, "\033[0;36m{^_^} ", 13);
-		write(1, "\033[0m ", 4);
+		write(1, "{^_^} ", 6);
+		/*write(1, "\033[0;36m{^_^} ", 13);*/
+		/*write(1, "\033[0m ", 4);*/
 	}
 
 	free(buffer); /*LIBERA MEMORIA*/
 }
-

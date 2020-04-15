@@ -25,13 +25,13 @@ char *_strdup(char *str)
 }
 
 /**
- * itoa - integer to ascii
+ * _itoa - integer to ascii
  * @num: num
  * @base: base
  * Return: char
  * Reference: https://gist.github.com/narnat/95733cd0ad7bfac0d90697292914c407
  **/
-char *itoa(long int num, int base)
+char *_itoa(int num, int base)
 {
 	static char *array = "0123456789abcdef";
 	static char buffer[50];

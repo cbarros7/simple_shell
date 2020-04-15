@@ -81,12 +81,11 @@ int child_process(char **args, char **argv, int count)
 {
 	int status;
 	char *path;
-
 	pid_t pid = fork();
 
 	if (pid < 0)
 	{
-		printf("error\n");
+		perror("error");
 		return (1);
 	}
 	else if (pid == 0)
@@ -95,19 +94,16 @@ int child_process(char **args, char **argv, int count)
 		{
 			path = _which(args[0]);
 			if (permission(path) == 1)
-			{
 				execve(path, args, environ);
-				free(path);
-			}
 			else if (permission(path) == -10)
 			{
-				printf("%s: %d: %s: not found\n", argv[0], count,  args[0]);
+				_error(argv[0], count, args[0]);
 				free(path);
 				exit(EXIT_FAILURE);
 			}
 			else
 			{
-				printf("%s: %d: %s: Permision denied\n", argv[0], count,  args[0]);
+				_denied(argv[0], count, args[0]);
 				free(path);
 				exit(EXIT_FAILURE);
 			}
@@ -191,4 +187,3 @@ int permission(char *filename)
 	i = -10;
 	return (i);
 }
-

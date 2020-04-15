@@ -24,9 +24,8 @@ int func_printenv(char **args)
 
 	for (i = 0; array[i]; i++)
 	{
-		printf("%s\n", array[i]);
+		write(1, array[i], _strlen(array[i]));
 	}
 
 	return (1);
 }
-
