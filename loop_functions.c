@@ -11,7 +11,7 @@ char *read_input(void)
 	int i;
 	ssize_t signal;
 
-	signal = getline(&line, &bufsize, stdin);
+	signal = getline(&line, &bufsize, STDIN_FILENO);
 	if (!line)
 	{
 		perror("Error allocating memory for buffer");
@@ -129,7 +129,7 @@ void prompt(void)
 	while (token != NULL)
 		token = strtok(NULL, "/");
 
-	if (isatty(fileno(stdin)))
+	if (isatty(STDIN_FILENO))
 	{
 		write(1, "{^_^} ", 6);
 	}

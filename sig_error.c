@@ -28,7 +28,7 @@ void handle_signal(int signal)
 {
 	(void) signal;
 	write(1, "\n{^_^} ", 7);
-	fflush(stdout);
+	fflush(STDOUT_FILENO);
 }
 
 /**
