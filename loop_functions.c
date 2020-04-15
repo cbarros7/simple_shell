@@ -45,6 +45,7 @@ char *read_input(void)
 /**
  * sparse_str - devides a string into and array of strings
  * @line: the string to be separated
+ * @env: environment variable
  * Return: tokens(array of strings) on succes or EXIT_FAILURE if fails
  */
 char **sparse_str(char *line, char **env)
@@ -55,7 +56,7 @@ char **sparse_str(char *line, char **env)
 
 	if (!tokens)
 	{
-		printf("error\n");
+		perror("error");
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, TOK_DELIM);
@@ -66,7 +67,7 @@ char **sparse_str(char *line, char **env)
 		token = strtok(NULL, TOK_DELIM);
 	}
 	if (tokens[0] == NULL)
-		tokens[posicion] = "\n"; //si es nulo esa pos es un new line
+		tokens[posicion] = "\n"; /*si es nulo esa pos es un new line*/
 
 	/*COMPARA EL TOKENS[0]*/
 	if ((_strcmp(tokens[0], "exit") == 0) && tokens[1] == NULL)
@@ -88,8 +89,8 @@ char **sparse_str(char *line, char **env)
 void prompt(void)
 {
 	char *buffer = getcwd(NULL, 0); /*directorio actual - recibe input*/
-	if (isatty(STDIN_FILENO))
-		/*verifica si el STDIN refiere la terminal*/
+
+	if (isatty(STDIN_FILENO)) /*verifica si el STDIN refiere la terminal*/
 	{
 		write(1, "\033[0;36m{^_^} ", 13);
 		write(1, "\033[0m ", 4);

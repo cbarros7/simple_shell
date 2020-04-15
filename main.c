@@ -8,22 +8,24 @@
  * @environ: environment variable
  * Return: EXIT_SUCCESS
  */
-int main(int ac __attribute__((unused)),  __attribute__((unused)) char **av, char **environ)
+int main(int ac __attribute__((unused)), char **av, char **environ)
 {
 	char *line;
 	char **args, **path;
 	int status = 0;
+	(void) av;
 	signal(SIGINT, handle_signal);
-	while (1) {
+	while (1)
+	{
 		prompt();
 		/*read input and return string*/
 		line = read_input();
 		/*separates string to get command and atgs*/
 		args = sparse_str(line, environ);
 
-		if ((_strcmp(args[0], "\n") != 0) && (_strcmp(args[0], "env") != 0))    /*compara que el comando no sea igual un nulo o a la palabra env*/
+		if ((_strcmp(args[0], "\n") != 0) && (_strcmp(args[0], "env") != 0))
 		{
-			path = search_path(environ); /*buscar la palabra PATH en la variable environ*/
+			path = search_path(environ); /*busca PATH en la variable environ*/
 			status = _stat(args, path);
 			child_process(args, environ, status);
 		}
@@ -31,7 +33,7 @@ int main(int ac __attribute__((unused)),  __attribute__((unused)) char **av, cha
 		{
 			free(args);
 		}
-		free (line);
+		free(line);
 	}
 	return (EXIT_SUCCESS);
 }

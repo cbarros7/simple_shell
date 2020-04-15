@@ -12,13 +12,14 @@ char **_which(char *foundpath)
 	char *copy_path = NULL, *tokens = NULL, *sparse = ":=";
 
 	char **dir = _calloc(sizeof(char *), size);
+
 	if (dir == NULL)
 	{
 		perror("Error allocated memory");
 		return (NULL);
 	}
 
-	copy_path = _strdup (foundpath); /*copiar el string --> palabra PATH*/
+	copy_path = _strdup(foundpath); /*copiar el string --> palabra PATH*/
 	tokens = strtok(copy_path, sparse); /*separar el string por un separador*/
 	while (tokens != NULL)
 	{
@@ -44,37 +45,37 @@ int child_process(char **args, char **environ, int status_main)
 	int status;
 
 	if (args == NULL)
-		return(-1);
+		return (-1);
 
 	pid = fork();
 	if (pid  < 0)
 	{
 		perror("./hsh: ");
-		exit (1);
+		exit(1);
 	}
 	else if (pid == 0)
 	{
 		if (execve(args[0], args, environ) == -1)
 		{
 			perror("./hsh: ");
-			free (args);
+			free(args);
 			exit(1);
 		}
-		exit (0);
+		exit(0);
 	}
 	else
 	{
 		if (status_main == 1)
-			free(args [0]);
+			free(args[0]);
 
 		free(args);
-		waitpid (pid, &status, WUNTRACED);
+		waitpid(pid, &status, WUNTRACED);
 	}
 	return (1);
 }
 
 /**
- * searchpath - gets the path to execute commands
+ * search_path - gets the path to execute commands
  * @environ: Environment variable
  * Return: token_path
  **/

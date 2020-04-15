@@ -2,8 +2,7 @@
 
 /**
  * func_printenv - prints the current environment
- * @args: the command being passed to print the environment
- * Return: 1
+ * @environ: environment variable
  */
 void func_printenv(char **environ)
 {
