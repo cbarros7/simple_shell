@@ -44,6 +44,8 @@ char *_which(char *args)
 	int size, i = 0;
 
 	buffer = _getenv("PATH");
+	if (buffer == NULL)
+		return (args);
 	size = _count_point(buffer);
 
 	dir = malloc(sizeof(char *) * size);

@@ -111,7 +111,7 @@ int execute(char **args, char **argv, int count, char *line)
 	}
 	while (i < size)
 	{
-		if (strcmp(args[0], array_commands[i]) == 0)
+		if (_strcmp(args[0], array_commands[i]) == 0)
 		{
 			free(line);
 			return ((*array_functions[i])(args));

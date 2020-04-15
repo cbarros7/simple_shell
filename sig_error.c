@@ -20,7 +20,6 @@ int _access(char *filename)
 	return (-10);
 }
 
-
 /**
  * handle_signal - prints new line and prompt when CTRL + C is passed as input
  * @signal: name of sig

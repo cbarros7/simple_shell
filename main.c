@@ -25,6 +25,7 @@ int main(int argc __attribute__((unused)), char **argv)
 		/*executes args*/
 		count += 1;
 		status = execute(args, argv, count, line);
+		free(line);
 		free(args);
 	} while (status);
 
