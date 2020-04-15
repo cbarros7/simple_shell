@@ -35,7 +35,7 @@ char *_itoa(int num, int base);
 
 char *read_input(void);
 char **sparse_str(char *line);
-int execute(char **args, char **argv, int count);
+int execute(char **args, char **argv, int count, char *line);
 void prompt(void);
 
 void *_realloc(void *ptr, unsigned int new_size);

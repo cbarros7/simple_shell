@@ -17,7 +17,7 @@ char *read_input(void)
 		perror("Error allocating memory for buffer");
 		return (0);
 	}
-	if (signal == -1)
+	if (signal == 1)
 	{
 		free(line);
 		return (NULL);
@@ -72,7 +72,6 @@ char **sparse_str(char *line)
 			{
 				free(tokens_backup);
 				perror("error");
-				free(line);
 				exit(EXIT_FAILURE);
 			}
 		}
@@ -86,11 +85,12 @@ char **sparse_str(char *line)
  * execute - executes a command that is passed to it as the first aguement
  * @args: command being passed to be executed
  * @argv: external input arguemnets
- * @count: command prompt counter
+ * @count: number of prompt
+ * @line: line to be freed
  * Return: a pointer to a function if builtin or a forked process that
  * executes a function in a path specified
  */
-int execute(char **args, char **argv, int count)
+int execute(char **args, char **argv, int count, char *line)
 {
 	char *array_commands[] = {
 		"exit",
@@ -105,11 +105,15 @@ int execute(char **args, char **argv, int count)
 	int size = sizeof(array_commands) / sizeof(char *);
 
 	if (args[0] == NULL)
+	{
+		free(line);
 		return (1);
+	}
 	while (i < size)
 	{
-		if (_strcmp(args[0], array_commands[i]) == 0)
+		if (strcmp(args[0], array_commands[i]) == 0)
 		{
+			free(line);
 			return ((*array_functions[i])(args));
 		}
 		i++;
@@ -129,12 +133,9 @@ void prompt(void)
 		token = strtok(NULL, "/");
 
 	if (isatty(fileno(stdin)))
-		/*verifica si el STDIN refiere la terminal*/
 	{
 		write(1, "{^_^} ", 6);
-		/*write(1, "\033[0;36m{^_^} ", 13);*/
-		/*write(1, "\033[0m ", 4);*/
 	}
 
-	free(buffer); /*LIBERA MEMORIA*/
+	free(buffer);
 }

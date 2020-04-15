@@ -24,11 +24,9 @@ int main(int argc __attribute__((unused)), char **argv)
 		args = sparse_str(line);
 		/*executes args*/
 		count += 1;
-		status = execute(args, argv, count);
-		free(line);
+		status = execute(args, argv, count, line);
 		free(args);
 	} while (status);
 
 	return (EXIT_SUCCESS);
 }
-

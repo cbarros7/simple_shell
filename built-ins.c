@@ -8,7 +8,8 @@
 int func_exit(char **args)
 {
 	(void) args;
-	exit(0);
+	free(args);
+	exit(-1);
 }
 
 /**

@@ -44,9 +44,8 @@ char *_which(char *args)
 	int size, i = 0;
 
 	buffer = _getenv("PATH");
-	if (buffer == NULL)
-		return (args);
 	size = _count_point(buffer);
+
 	dir = malloc(sizeof(char *) * size);
 	if (dir == NULL)
 	{
@@ -74,7 +73,7 @@ char *_which(char *args)
  * child_process - executes a command if the path of it is an executable file
  * @args: the command to be executed
  * @argv: external input arguements
- * @count: counter for error
+ * @count: number of prompt
  * Return: 1
  */
 int child_process(char **args, char **argv, int count)
@@ -98,11 +97,10 @@ int child_process(char **args, char **argv, int count)
 			if (execve(path, args, environ) == -1)
 			{
 				_error(argv[0], count, args[0], access);
-				free(path);
 				exit(EXIT_FAILURE);
 			}
+			free(path);
 		}
-		free(path);
 	}
 	else
 	{
@@ -127,6 +125,7 @@ char *search_func(char **dir, char *cmd)
 	char *tmp;
 
 	tmp = malloc(sizeof(char *) * 100);
+
 	if (tmp == NULL)
 		return (NULL);
 
@@ -158,24 +157,4 @@ char *search_func(char **dir, char *cmd)
 	}
 	free(tmp);
 	return (cmd);
-}
-
-/**
- * _access - Check if a filename have permissions
- * @filename: Filename to check
- * Return: On success 1, On error -1, if file not found -10
- **/
-int _access(char *filename)
-{
-	struct stat stats;
-
-	if (stat(filename, &stats) == 0)
-	{
-		if (stats.st_mode & X_OK)
-			return (1);
-		else
-			return (-1);
-	}
-
-	return (-10);
 }

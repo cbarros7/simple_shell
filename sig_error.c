@@ -1,6 +1,27 @@
 #include "simpleshell.h"
 
 /**
+ * _access - Check if a filename have permissions
+ * @filename: Filename to check
+ * Return: On success 1, On error -1, if file not found -10
+ **/
+int _access(char *filename)
+{
+	struct stat stats;
+
+	if (stat(filename, &stats) == 0)
+	{
+		if (stats.st_mode & X_OK)
+			return (1);
+		else
+			return (-1);
+	}
+
+	return (-10);
+}
+
+
+/**
  * handle_signal - prints new line and prompt when CTRL + C is passed as input
  * @signal: name of sig
  */
@@ -60,11 +81,3 @@ int *_error(char *argv, int count, char *args, int access)
 
 	return (0);
 }
-
-/**
- * _denied - prints the error output of a file
- * @argv: name of program
- * @count: number of prompt
- * @args: command to be put in
- * Return: 0 o success
- */
