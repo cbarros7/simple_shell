@@ -1,52 +1,26 @@
 #include "simpleshell.h"
-/**
- * _realloc - Reallocates a space in memory
- * @ptr: The pointer with allocated size in memory
- * @new_size: The new size to realloc
- * Return: a newly allocated string
- */
-void *_realloc(void *ptr, unsigned int new_size)
-{
-	char *str;
-
-	if (ptr == NULL)
-	{
-		str = malloc(new_size);
-		if (str == NULL)
-			return (NULL);
-		return (str);
-	}
-	if (new_size == 0 && ptr != NULL)
-	{
-		free(ptr);
-		return (NULL);
-	}
-	str = malloc(new_size);
-	if (str == 0)
-		return (NULL);
-
-
-	free(ptr);
-	return (str);
-}
-
 
 /**
- * _count_point  - memory buffer
- * @buffer: buffer
- * Return: int
- * On error, -1 is returned, and errno is set appropriately.
+ *_calloc -allocated memoria for nmeb elemn de zise bytes
+ *@nmemb: number of element in the array
+ *@size: bytes for each position in the array
+ *Return: pointer void
  */
-
-int _count_point(char *buffer)
+void *_calloc(unsigned int nmemb, unsigned int size)
 {
-	int i, count = 2;
-	char *separator = ":";
+	char *p;
+	unsigned int i;
 
-	for (i = 0; buffer[i] != '\0'; i++)
-	{
-		if (buffer[i] == separator[0])
-			count++;
-	}
-	return (count);
+	if (nmemb == 0 || size == 0)
+		return (NULL);
+
+	p = malloc(nmemb * size);
+	if (p == NULL)
+		return (NULL);
+
+	for (i = 0; i < nmemb * size; i++)
+		p[i] = 0;
+
+	return (p);
+
 }

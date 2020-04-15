@@ -7,9 +7,9 @@
 char *read_input(void)
 {
 	char *line = NULL;
+	ssize_t signal;
 	size_t bufsize = 0;
 	int i;
-	ssize_t signal;
 
 	signal = getline(&line, &bufsize, stdin);
 	if (!line)
@@ -47,15 +47,15 @@ char *read_input(void)
  * @line: the string to be separated
  * Return: tokens(array of strings) on succes or EXIT_FAILURE if fails
  */
-char **sparse_str(char *line)
+char **sparse_str(char *line, char **env)
 {
 	int bufsize = TOK_BUFSIZE, posicion = 0;
-	char **tokens = malloc(bufsize * sizeof(char *));
-	char *token, **tokens_backup;
+	char **tokens = _calloc(sizeof(char *), bufsize);
+	char *token;
 
 	if (!tokens)
 	{
-		perror("error");
+		printf("error\n");
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, TOK_DELIM);
@@ -63,78 +63,36 @@ char **sparse_str(char *line)
 	{
 		tokens[posicion] = token;
 		posicion++;
-		if (posicion >= bufsize)
-		{
-			bufsize += TOK_BUFSIZE;
-			tokens_backup = tokens;
-			tokens = _realloc(tokens, bufsize * sizeof(char *));
-			if (!tokens)
-			{
-				free(tokens_backup);
-				perror("error");
-				exit(EXIT_FAILURE);
-			}
-		}
 		token = strtok(NULL, TOK_DELIM);
 	}
-	tokens[posicion] = NULL;
+	if (tokens[0] == NULL)
+		tokens[posicion] = "\n"; //si es nulo esa pos es un new line
+
+	/*COMPARA EL TOKENS[0]*/
+	if ((_strcmp(tokens[0], "exit") == 0) && tokens[1] == NULL)
+	{
+		free(line); /*LIBERA MEMORIA Y SALE DEL PROGRAMA*/
+		free(tokens);
+		exit(0);
+	}
+	if ((_strcmp(tokens[0], "env") == 0) && tokens[1] == NULL)
+		func_printenv(env);      /*Encuentra el enviroment*/
+
 	return (tokens);
 }
 
-/**
- * execute - executes a command that is passed to it as the first aguement
- * @args: command being passed to be executed
- * @argv: external input arguemnets
- * @count: number of prompt
- * @line: line to be freed
- * @env: environment variable
- * Return: a pointer to a function if builtin or a forked process that
- * executes a function in a path specified
- */
-int execute(char **args, char **argv, int count, char *line, char **env)
-{
-	char *array_commands[] = {
-		"exit",
-		"env"
-	};
-
-	int (*array_functions[]) (char **) = {
-		&func_exit,
-		&func_printenv,
-	};
-	int i = 0;
-	int size = sizeof(array_commands) / sizeof(char *);
-
-	if (args[0] == NULL)
-		return (1);
-	while (i < size)
-	{
-		if (_strcmp(args[0], array_commands[i]) == 0)
-		{
-			free(line);
-			return ((*array_functions[i])(args));
-		}
-		i++;
-	}
-	return (child_process(args, argv, count, env));
-}
 
 /**
  * prompt - prints '$' and waits for a user's input
  */
 void prompt(void)
 {
-	char *prompt = {"$ "};
-	char *buffer = getcwd(NULL, 0); /*directorio actiual - recibe input*/
-	char *token = strtok(buffer, "/");
-
-	while (token != NULL)
-		token = strtok(NULL, "/");
-
+	char *buffer = getcwd(NULL, 0); /*directorio actual - recibe input*/
 	if (isatty(STDIN_FILENO))
+		/*verifica si el STDIN refiere la terminal*/
 	{
-		write(1, prompt, _strlen(prompt));
+		write(1, "\033[0;36m{^_^} ", 13);
+		write(1, "\033[0m ", 4);
 	}
-
-	free(buffer);
+	free(buffer); /*LIBERA MEMORIA*/
 }

@@ -1,28 +1,21 @@
 #include "simpleshell.h"
 
 /**
- * *_strstr - locates a substring
- * @str1: string one
- * @str2: string two
+ *_puts - prints a string
+ *@str: A pointer to an int that will be updated
  *
- * Return: pointer to the beginning of the located substring
- * or NULL if the substring is not found
+ *Return: void
  */
-char *_strstr(char *str1, char *str2)
-{
-	int i, j;
+void _puts(char *str)
 
-	for (i = 0; str1[i] != '\0'; i++)
+{
+	int n;
+
+	for (n = 0 ; str[n] != '\0' ; n++)
 	{
-		for (j = 0; str2[j] != '\0'; j++)
-		{
-			if (str1[i + j] != str2[j])
-				break;
-		}
-		if (!str2[j])
-			return (&str1[i]);
+		_putchar(str[n]);
 	}
-	return (NULL);
+	_putchar('\n');
 }
 
 /**
@@ -42,52 +35,52 @@ int _strlen(const char *s)
 	return ((i + 1));
 }
 
-/**
- * *_strcpy - copies a string pointed to by src to dest
- * @src: variale where string will be copied from
- * @dest: variable that string will be copied to
- * Return: dest
- */
-char *_strcpy(char *dest, char *src)
+int _putchar(char c)
 {
-	int p;
-
-	for (p = 0; src[p] != '\0'; p++)
-	{
-		dest[p] = src[p];
-	}
-	dest[p] = '\0';
-
-	return (dest);
+	return (write(1, &c, 1));
 }
 
 /**
- * *_strcat - concatenates two strings
- * @src: variable containing string to be concatenated
- * @dest: variable containing string to be concatenated to
- * Return: dest
+ *str_concat - back a pointer to array
+ *@s1: Array one
+ *@s2: Array two
+ *Return: Always an array dinamic
  */
-char *_strcat(char *dest, char *src)
+char *str_concat(char *s1, char *s2)
 {
+	char *dst;
+	unsigned int i, j, size;
 
-	int dest_c = 0;
-	int src_c = 0;
+	/*If the array is empty*/
+	if (s1 == NULL)
+		s1 = "";
 
-	while (dest[dest_c] != '\0')
+	if (s2 == NULL)
+		s2 = "";
+
+	/*count size total*/
+	size = (_strlen(s1) + _strlen(s2) + 1);
+
+	/*malloc*/
+	dst = (char *) malloc(size * sizeof(char));
+
+	if (dst == 0)
 	{
-		dest_c++;
+		return (NULL);
 	}
 
-	while (src[src_c] != '\0')
+	/*Concatenate arrays*/
+	for (i = 0; *(s1 + i) != '\0'; i++)
+		*(dst + i) = *(s1 + i);
+
+	for (j = 0; *(s2 + j) != '\0'; j++)
 	{
-		dest[dest_c] = src[src_c];
-		src_c++;
-		dest_c++;
+		*(dst + i) = *(s2 + j);
+		i++;
 	}
+	dst[i] = '\0';
 
-	dest[dest_c] = '\0';
-
-	return (dest);
+	return (dst);
 }
 
 /**

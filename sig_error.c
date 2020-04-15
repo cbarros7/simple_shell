@@ -1,26 +1,6 @@
 #include "simpleshell.h"
 
 /**
- * _access - Check if a filename have permissions
- * @filename: Filename to check
- * Return: On success 1, On error -1, if file not found -10
- **/
-int _access(char *filename)
-{
-	struct stat stats;
-
-	if (stat(filename, &stats) == 0)
-	{
-		if (stats.st_mode & X_OK)
-			return (1);
-		else
-			return (-1);
-	}
-
-	return (-10);
-}
-
-/**
  * handle_signal - prints new line and prompt when CTRL + C is passed as input
  * @signal: name of sig
  */
@@ -34,50 +14,36 @@ void handle_signal(int signal)
 }
 
 /**
- * _stat - displays file or file system status
- * @str: pointer to what is being checked
- * Return: 0 on success or -1 on failure
- */
-int _stat(char *str)
+ * _stat - get file status
+ * @cmd: pointo with commands
+ * @path: location of each directory
+ * Return: 1 on success
+ **/
+int _stat(char **cmd, char **path)
 {
-	struct stat var;
+	char *conc_str = NULL, *new_concat = NULL;
+	int count = 1;
 
-	if (stat(str, &var) == 0)
-		return (0);
-	return (-1);
-}
+	struct stat sb;
 
-/**
- * _error - prints the error output of a file
- * @argv: name of program
- * @count: number of prompt
- * @args: command to be put in
- * @access: permission of file
- * Return: 0 on success
- */
-int *_error(char *argv, int count, char *args, int access)
-{
-	char *number;
-
-	number = _itoa(count, 10);
-	if (access == -10 || access == 1)
+	for (; path[count] != NULL ; count++)
 	{
-		write(2, argv, _strlen(argv));
-		write(2, ": ", 2);
-		write(2, number, _strlen(number));
-		write(2, ": ", 2);
-		write(2, args, _strlen(args));
-		write(2, ": not found\n", 12);
-	}
-	else if (access == -1)
-	{
-		write(2, argv, _strlen(argv));
-		write(2, ": ", 2);
-		write(2, number, _strlen(number));
-		write(2, ": ", 2);
-		write(2, args, _strlen(args));
-		write(2, ": Permission denied\n", 20);
-	}
+		conc_str = str_concat(path[count], "/"); /*ir concatenando los / al path*/
+		new_concat = str_concat(conc_str, cmd[0]); /*concatenar el comando*/
 
+		if (stat(new_concat, &sb) == 0) /*arroja el estado del nuevo path*/
+		{
+			cmd[0] = new_concat;
+			free(conc_str);
+			free(path[0]);
+			free(path);
+			return (1);
+		}
+		free(conc_str);
+		free(new_concat);
+	}
+	free(path[0]);
+	free(path);
 	return (0);
 }
+
