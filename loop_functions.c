@@ -11,7 +11,7 @@ char *read_input(void)
 	int i;
 	ssize_t signal;
 
-	signal = getline(&line, &bufsize, STDIN_FILENO);
+	signal = getline(&line, &bufsize, stdin);
 	if (!line)
 	{
 		perror("Error allocating memory for buffer");
