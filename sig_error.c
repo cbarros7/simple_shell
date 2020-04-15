@@ -27,8 +27,10 @@ int _access(char *filename)
 void handle_signal(int signal)
 {
 	(void) signal;
-	write(1, "\n{^_^} ", 7);
-	fflush(STDOUT_FILENO);
+	char *prompt = {"\n{^_^}"};
+
+	write(STDOUT_FILENO, prompt, _strlen(prompt));
+	fflush(stdout);
 }
 
 /**
