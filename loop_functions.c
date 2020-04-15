@@ -105,10 +105,7 @@ int execute(char **args, char **argv, int count, char *line)
 	int size = sizeof(array_commands) / sizeof(char *);
 
 	if (args[0] == NULL)
-	{
-		free(line);
 		return (1);
-	}
 	while (i < size)
 	{
 		if (_strcmp(args[0], array_commands[i]) == 0)

@@ -99,6 +99,8 @@ int child_process(char **args, char **argv, int count)
 			if (execve(path, args, environ) == -1)
 			{
 				_error(argv[0], count, args[0], access);
+				free(path);
+				free(args);
 				exit(EXIT_FAILURE);
 			}
 			free(path);
