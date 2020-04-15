@@ -14,8 +14,7 @@ extern char **environ;
 
 void handle_signal(int signal);
 int _stat(char *s);
-int *_error(char *argv, int count, char *args);
-int *_denied(char *argv, int count, char *args);
+int *_error(char *argv, int count, char *args, int access);
 
 int func_exit(char **args);
 int func_printenv(char **args);
@@ -24,7 +23,7 @@ char *_which(char *args);
 char *_getenv(char *path);
 char *search_func(char **dir, char *cmd);
 int child_process(char **args, char **argv, int count);
-int permission(char *filename);
+int _access(char *filename);
 
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);

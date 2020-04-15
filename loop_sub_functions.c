@@ -81,6 +81,7 @@ int child_process(char **args, char **argv, int count)
 {
 	int status;
 	char *path;
+	int access;
 	pid_t pid = fork();
 
 	if (pid < 0)
@@ -93,22 +94,15 @@ int child_process(char **args, char **argv, int count)
 		if (args != NULL)
 		{
 			path = _which(args[0]);
-			if (permission(path) == 1)
-				execve(path, args, environ);
-			else if (permission(path) == -10)
+			access = _access(path);
+			if (execve(path, args, environ) == -1)
 			{
-				_error(argv[0], count, args[0]);
+				_error(argv[0], count, args[0], access);
 				free(path);
 				exit(EXIT_FAILURE);
 			}
-			else
-			{
-				_denied(argv[0], count, args[0]);
-				free(path);
-				exit(EXIT_FAILURE);
-			}
-			free(path);
 		}
+		free(path);
 	}
 	else
 	{
@@ -167,13 +161,12 @@ char *search_func(char **dir, char *cmd)
 }
 
 /**
- * permission - Check if a filename have permissions
+ * _access - Check if a filename have permissions
  * @filename: Filename to check
  * Return: On success 1, On error -1, if file not found -10
  **/
-int permission(char *filename)
+int _access(char *filename)
 {
-	int i;
 	struct stat stats;
 
 	if (stat(filename, &stats) == 0)
@@ -184,6 +177,5 @@ int permission(char *filename)
 			return (-1);
 	}
 
-	i = -10;
-	return (i);
+	return (-10);
 }

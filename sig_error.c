@@ -31,20 +31,32 @@ int _stat(char *str)
  * @argv: name of program
  * @count: number of prompt
  * @args: command to be put in
+ * @access: permission of file
  * Return: 0 on success
  */
-int *_error(char *argv, int count, char *args)
+int *_error(char *argv, int count, char *args, int access)
 {
 	char *number;
 
 	number = _itoa(count, 10);
-
-	write(2, argv, _strlen(argv));
-	write(2, ": ", 2);
-	write(2, number, _strlen(number));
-	write(2, ": ", 2);
-	write(2, args, _strlen(args));
-	write(2, ": not found\n", 12);
+	if (access == -10 || access == 1)
+	{
+		write(2, argv, _strlen(argv));
+		write(2, ": ", 2);
+		write(2, number, _strlen(number));
+		write(2, ": ", 2);
+		write(2, args, _strlen(args));
+		write(2, ": not found\n", 12);
+	}
+	else if (access == -1)
+	{
+		write(2, argv, _strlen(argv));
+		write(2, ": ", 2);
+		write(2, number, _strlen(number));
+		write(2, ": ", 2);
+		write(2, args, _strlen(args));
+		write(2, ": Permission denied\n", 20);
+	}
 
 	return (0);
 }
@@ -56,18 +68,3 @@ int *_error(char *argv, int count, char *args)
  * @args: command to be put in
  * Return: 0 o success
  */
-int *_denied(char *argv, int count, char *args)
-{
-	char *number;
-
-	number = _itoa(count, 10);
-
-	write(2, argv, _strlen(argv));
-	write(2, ": ", 2);
-	write(2, number, _strlen(number));
-	write(2, ": ", 2);
-	write(2, args, _strlen(args));
-	write(2, ": Permission denied\n", 20);
-
-	return (0);
-}
