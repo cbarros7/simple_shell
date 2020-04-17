@@ -51,9 +51,14 @@ char *read_input(void)
 char **sparse_str(char *line, char **env)
 {
 	int bufsize = TOK_BUFSIZE, posicion = 0;
-	char **tokens = _calloc(sizeof(char *), bufsize);
+	char **tokens;
 	char *token;
 
+	if (line == NULL)
+	{
+		return(0);
+	}
+	tokens = _calloc(sizeof(char *), bufsize);
 	if (!tokens)
 	{
 		perror("error");
@@ -88,12 +93,12 @@ char **sparse_str(char *line, char **env)
  */
 void prompt(void)
 {
-	char *buffer = getcwd(NULL, 0); /*directorio actual - recibe input*/
+	char *prompt = {"{^_^} "};
+	char *buffer = getcwd(NULL, 0);
 
-	if (isatty(STDIN_FILENO)) /*verifica si el STDIN refiere la terminal*/
+	if (isatty(STDIN_FILENO))
 	{
-		write(1, "\033[0;36m{^_^} ", 13);
-		write(1, "\033[0m ", 4);
+		write(STDOUT_FILENO, prompt, _strlen(prompt));
 	}
-	free(buffer); /*LIBERA MEMORIA*/
+	free(buffer);
 }

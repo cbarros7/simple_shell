@@ -10,11 +10,16 @@ char **_which(char *foundpath)
 {
 	int size = TOK_BUFSIZE, i = 0;
 	char *copy_path = NULL, *tokens = NULL, *sparse = ":=";
-
 	char **dir = _calloc(sizeof(char *), size);
 
+	if (foundpath == NULL)
+	{
+		free(foundpath);
+		return(0);
+	}
 	if (dir == NULL)
 	{
+		free(foundpath);
 		perror("Error allocated memory");
 		return (NULL);
 	}
@@ -35,11 +40,13 @@ char **_which(char *foundpath)
 /**
  * child_process - executes a command if the path of it is an executable file
  * @args: the command to be executed
- * @environ: environment variable
+ * @env: environment variable
  * @status_main: status variable
+ * @av: name of program
+ * @cnt: count of prompt
  * Return: 1
  */
-int child_process(char **args, char **environ, int status_main)
+int child_process(char **av, char **args, char **env, int status_main, int cnt)
 {
 	pid_t pid;
 	int status;
@@ -55,9 +62,9 @@ int child_process(char **args, char **environ, int status_main)
 	}
 	else if (pid == 0)
 	{
-		if (execve(args[0], args, environ) == -1)
+		if (execve(args[0], args, env) == -1)
 		{
-			perror("./hsh: ");
+			_error(av[0], cnt, args[0]);
 			free(args);
 			exit(1);
 		}

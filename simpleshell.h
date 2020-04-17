@@ -13,15 +13,15 @@
 extern char **environ;
 
 void handle_signal(int signal);
-int *_error(char *argv, int count, char *args, int access);
+int *_error(char *argv, int count, char *args);
 
 int func_exit(char **args);
-void func_printenv(char **environ);
+void func_printenv(char **env);
 
 char **_which(char *foundpath);
 char *_getenv(char *name, char **env);
 char *search_func(char **dir, char *cmd);
-int child_process(char **args, char **environ, int count);
+int child_process(char **av, char **args, char **environ, int status, int count);
 int _access(char *filename);
 
 char *_strcat(char *dest, char *src);
