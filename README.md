@@ -50,6 +50,11 @@ Custom version UNIX command language interpreter built as a project for Holberto
   * ```isatty``` (```man 3 isatty```)
   * ```fflush``` (```man 3 fflush```)
 
+## Flowchart :pushpin:
+Below you can see all the process flow in general terms that was taken into account at the time of making the code. 
+
+![flowchar mr robot](https://user-images.githubusercontent.com/60367519/79517219-2adbc000-8013-11ea-9835-30bf7c59a41e.jpg)
+
 ## Quick start :runner:
 Git clone the repository:
 
@@ -143,6 +148,9 @@ The following built-ins are supported by the *Mr. Robot*:
 
 ## Bugs :loudspeaker:
 No known bugs.
+
+## Annotations :loudspeaker:
+We have written an [**article**](https://www.linkedin.com/pulse/ls-l-command-understanding-what-happens-shell-carlos-barros/) in which we deepen the internal processes within the shell by typing the command "ls -l". We talk about fundamental elements such as the PATH, and conclude with the permission structure with some examples. 
 
 ## Authors :black_nib:
 * **Carlos Barros** [Github](https://github.com/cbarros7)
