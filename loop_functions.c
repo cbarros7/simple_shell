@@ -27,7 +27,7 @@ char *read_input(void)
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "\n", 1);
 		free(line);
-		exit(0);
+		exit(1);
 	}
 	else
 	{
@@ -56,7 +56,7 @@ char **sparse_str(char *line, char **env)
 
 	if (line == NULL)
 	{
-		return(0);
+		return (0);
 	}
 	tokens = _calloc(sizeof(char *), bufsize);
 	if (!tokens)

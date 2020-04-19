@@ -15,7 +15,7 @@ char **_which(char *foundpath)
 	if (foundpath == NULL)
 	{
 		free(foundpath);
-		return(0);
+		return (0);
 	}
 	if (dir == NULL)
 	{

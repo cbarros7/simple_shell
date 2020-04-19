@@ -53,7 +53,7 @@ int _stat(char **cmd, char **path)
 	{
 		free(path);
 		free(cmd);
-		return(0);
+		return (0);
 	}
 
 	for (count = 0; path[count] != NULL ; count++)
