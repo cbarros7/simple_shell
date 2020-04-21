@@ -27,7 +27,7 @@ char *read_input(void)
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "\n", 1);
 		free(line);
-		exit(1);
+		exit(0);
 	}
 	else
 	{
